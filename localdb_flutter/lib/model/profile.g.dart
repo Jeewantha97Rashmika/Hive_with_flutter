@@ -17,7 +17,7 @@ class ProfileAdapter extends TypeAdapter<Profile> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Profile(
-      address: (fields[0] as List).cast<Address>(),
+      address: fields[0] as Address,
       email: fields[1] as String,
       firstName: fields[2] as String,
       heading: fields[3] as String,

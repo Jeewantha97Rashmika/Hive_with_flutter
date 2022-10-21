@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:localdb_flutter/screens/addProfileScreen.dart';
 import 'package:localdb_flutter/screens/addScreen.dart';
 import 'package:localdb_flutter/screens/updateScreen.dart';
 
@@ -22,7 +23,8 @@ class _InfoScreenState extends State<InfoScreen> {
   void initState() {
     super.initState();
     // Get reference to an already opened box
-    contactBox = Hive.box('address');
+    // contactBox = Hive.box('address');
+    contactBox = Hive.box('profile');
   }
 
   @override
@@ -34,7 +36,7 @@ class _InfoScreenState extends State<InfoScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => AddScreen(),
+            builder: (context) => AddProfileScreen(),
           ),
         ),
         child: Icon(Icons.add),
@@ -62,8 +64,8 @@ class _InfoScreenState extends State<InfoScreen> {
                     ),
                   ),
                   child: ListTile(
-                    title: Text(personData.city),
-                    subtitle: Text(personData.country),
+                    title: Text(personData.email),
+                    subtitle: Text(personData.firstName),
                     trailing: IconButton(
                       onPressed: () => _deleteInfo(index),
                       icon: Icon(

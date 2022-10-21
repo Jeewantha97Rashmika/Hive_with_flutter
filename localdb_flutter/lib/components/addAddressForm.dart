@@ -33,8 +33,7 @@ class _addAddressFormState extends State<addAddressForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +88,7 @@ class _addAddressFormState extends State<addAddressForm> {
             ),
           ],
         ),
-      ),
+      
     );
   }
 

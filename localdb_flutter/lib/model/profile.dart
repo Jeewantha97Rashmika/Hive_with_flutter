@@ -5,7 +5,7 @@ part 'profile.g.dart';
 @HiveType(typeId: 2)
 class Profile extends HiveObject {
   @HiveField(0)
-  final List<Address> address;
+  final String address;
   @HiveField(1)
   final String email;
   @HiveField(2)

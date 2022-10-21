@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:localdb_flutter/components/addData.dart';
 import 'package:localdb_flutter/model/people.dart';
@@ -11,16 +13,28 @@ import 'model/address.dart';
 import 'model/profile.dart';
 
 Future<void> main() async {
+
+  
   // Initialize hive
   await Hive.initFlutter();
   // Registering the adapter
- 
-  Hive.registerAdapter(AddressAdapter());
-  
+
+ var path = Directory.current.path;
+  Hive
+    ..init(path)
+    ..registerAdapter(AddressAdapter())
+    ..registerAdapter(ProfileAdapter());
+    
+    
+
+
+
   // Opening the box
-  await Hive.openBox('address');
+  await Hive.openBox<Address>('address');
+  await Hive.openBox<Profile>('profile');
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -34,11 +48,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: InfoScreen()
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: InfoScreen());
   }
 }

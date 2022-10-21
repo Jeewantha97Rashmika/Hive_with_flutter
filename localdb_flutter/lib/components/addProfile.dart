@@ -7,15 +7,17 @@ import 'package:localdb_flutter/model/person.dart';
 import 'package:localdb_flutter/model/profile.dart';
 
 class AddProfileForm extends StatefulWidget {
-  const AddProfileForm({Key? key}) : super(key: key);
+  const AddProfileForm({
+    Key? key,
+  }) : super(key: key);
+
   @override
   _AddProfileFormState createState() => _AddProfileFormState();
 }
 
 class _AddProfileFormState extends State<AddProfileForm> {
-  late final Box box;
-
- 
+  late final Box<dynamic> box;
+  final  Address address = box('address').values;
   final _emailController = TextEditingController();
   final _firstNameController = TextEditingController();
   final _headingController = TextEditingController();
@@ -24,7 +26,6 @@ class _AddProfileFormState extends State<AddProfileForm> {
   final _photographController = TextEditingController();
   final _subtitleController = TextEditingController();
   final _websiteController = TextEditingController();
-
   final _personFormKey = GlobalKey<FormState>();
 
   @override
@@ -36,98 +37,76 @@ class _AddProfileFormState extends State<AddProfileForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Form(
-            key: _personFormKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-              
-                Text(' Country'),
-                TextFormField(
-                  controller: _emailController,
-                  validator: _fieldValidator,
-                ),
-                Text('line1'),
-                TextFormField(
-                  controller: _firstNameController,
-                  validator: _fieldValidator,
-                ),
-                SizedBox(height: 24.0),
-                Text('line2'),
-                TextFormField(
-                  controller: _headingController,
-                  validator: _fieldValidator,
-                ),
-                SizedBox(height: 24.0),
-                Text('pincode'),
-                TextFormField(
-                  controller: _lastNameController,
-                  validator: _fieldValidator,
-                ),
-                SizedBox(height: 24.0),
-                Text(' Country'),
-                TextFormField(
-                  controller: _phoneNameController,
-                  validator: _fieldValidator,
-                ),
-                Text('line1'),
-                TextFormField(
-                  controller: _photographController,
-                  validator: _fieldValidator,
-                ),
-                SizedBox(height: 24.0),
-                Text('line2'),
-                TextFormField(
-                  controller: _subtitleController,
-                  validator: _fieldValidator,
-                ),
-                SizedBox(height: 24.0),
-                Text('pincode'),
-                TextFormField(
-                  controller: _websiteController,
-                  validator: _fieldValidator,
-                ),
-                Spacer(),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 24.0),
-                  child: Container(
-                    width: double.maxFinite,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                       
-                          _addInfo();
-                          Navigator.of(context).pop();
-                        },
-                     
-                      child: Text('Next'),
-                    ),
-                  ),
-                ),
-              ],
+    return  Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(' email'),
+        TextFormField(
+          controller: _emailController,
+          // validator: _fieldValidator,
+        ),
+        Text('firstName'),
+        TextFormField(
+          controller: _firstNameController,
+          // validator: _fieldValidator,
+        ),
+        SizedBox(height: 24.0),
+        Text('heading'),
+        TextFormField(
+          controller: _headingController,
+          validator: _fieldValidator,
+        ),
+        SizedBox(height: 24.0),
+        Text('lastName'),
+        TextFormField(
+          controller: _lastNameController,
+          validator: _fieldValidator,
+        ),
+        // SizedBox(height: 24.0),
+        // Text(' phone'),
+        // TextFormField(
+        //   controller: _phoneNameController,
+        //   validator: _fieldValidator,
+        // ),
+        // Text('photograph'),
+        // TextFormField(
+        //   controller: _photographController,
+        //   validator: _fieldValidator,
+        // ),
+        // SizedBox(height: 24.0),
+        // Text('subtitle'),
+        // TextFormField(
+        //   controller: _subtitleController,
+        //   validator: _fieldValidator,
+        // ),
+        // SizedBox(height: 24.0),
+        // Text('website'),
+        // TextFormField(
+        //   controller: _websiteController,
+        //   validator: _fieldValidator,
+        // ),
+        Spacer(),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 24.0),
+          child: Container(
+            width: double.maxFinite,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {
+                _addInfo();
+                Navigator.of(context).pop();
+              },
+              child: Text('Next'),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 
   _addInfo() async {
-    // Address newAddress = Address(
-    //   city: _cityController.text,
-    //   country: _countryController.text,
-    //   line1: _line1Controller.text,
-    //   line2: _line2Controller.text,
-    //   pincode: _pincodeController.text,
-    // );
-    // box.add(newAddress);
-
     Profile newProfile = Profile(
-        address: box.get('address'),
+        address:address ,
         email: _emailController.text,
         firstName: _firstNameController.text,
         heading: _headingController.text,
@@ -137,7 +116,7 @@ class _AddProfileFormState extends State<AddProfileForm> {
         subtitle: _subtitleController.text,
         website: _websiteController.text);
 
-    // print('Info added to box! $newAddress');
+    box.add(newProfile);
   }
 
   String? _fieldValidator(String? value) {

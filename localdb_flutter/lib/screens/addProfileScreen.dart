@@ -5,6 +5,7 @@ import 'package:localdb_flutter/components/addProfile.dart';
 
 import '../components/addAddressForm.dart';
 
+
 class AddProfileScreen extends StatefulWidget {
   @override
   _AddProfileScreenState createState() => _AddProfileScreenState();
@@ -14,13 +15,15 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Add Info'),
+        title: Text("Add Profile"),
       ),
-      body: SingleChildScrollView(
+      body:Padding(
+        padding: const EdgeInsets.all(16.0),
         child: AddProfileForm(),
       ),
+      
     );
   }
 }
