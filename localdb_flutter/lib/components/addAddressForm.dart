@@ -28,81 +28,86 @@ class _addAddressFormState extends State<addAddressForm> {
   void initState() {
     super.initState();
     // Get reference to an already opened box
-    box = Hive.box('address');
+    box = Hive.box('profile');
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('city'),
-            TextFormField(
-              controller: _cityController,
-              // validator: _fieldValidator,
-            ),
-            SizedBox(height: 24.0),
-            Text(' Country'),
-            TextFormField(
-              controller: _countryController,
-              // validator: _fieldValidator,
-            ),
-            SizedBox(height: 24.0),
-            Text('line1'),
-            TextFormField(
-              controller: _line1Controller,
-              // validator: _fieldValidator,
-            ),
-            SizedBox(height: 24.0),
-            Text('line2'),
-            TextFormField(
-              controller: _line2Controller,
-              // validator: _fieldValidator,
-            ),
-            SizedBox(height: 24.0),
-            Text('pincode'),
-            TextFormField(
-              controller: _pincodeController,
-              // validator: _fieldValidator,
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 24.0),
-              child: Container(
-                width: double.maxFinite,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {
-                    _addInfo();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AddProfileScreen()),
-                    );
-                  },
-                  child: Text('Next'),
-                ),
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('city'),
+          TextFormField(
+            controller: _cityController,
+            // validator: _fieldValidator,
+          ),
+          SizedBox(height: 24.0),
+          Text(' Country'),
+          TextFormField(
+            controller: _countryController,
+            // validator: _fieldValidator,
+          ),
+          SizedBox(height: 24.0),
+          Text('line1'),
+          TextFormField(
+            controller: _line1Controller,
+            // validator: _fieldValidator,
+          ),
+          SizedBox(height: 24.0),
+          Text('line2'),
+          TextFormField(
+            controller: _line2Controller,
+            // validator: _fieldValidator,
+          ),
+          SizedBox(height: 24.0),
+          Text('pincode'),
+          TextFormField(
+            controller: _pincodeController,
+            // validator: _fieldValidator,
+          ),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 24.0),
+            child: Container(
+              width: double.maxFinite,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  _addInfo();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddProfileScreen()),
+                  );
+                },
+                child: Text('Next'),
               ),
             ),
-          ],
-        ),
-      
+          ),
+        ],
+      ),
     );
   }
 
   _addInfo() async {
-    Address newAddress = Address(
-      city: _cityController.text,
-      country: _countryController.text,
-      line1: _line1Controller.text,
-      line2: _line2Controller.text,
-      pincode: _pincodeController.text,
-    );
-    box.add(newAddress);
-print("Data added");
-   
+    Profile newProfile = Profile(
+        address: Address(
+            city: _cityController.text,
+            country: _countryController.text,
+            line1: _line1Controller.text,
+            line2: _line2Controller.text,
+            pincode: _pincodeController.text),
+        email: '',
+        firstName: '',
+        heading: '',
+        lastName: '',
+        phone: '',
+        photograph: '',
+        subtitle: '',
+        website: '');
+
+    box.add(newProfile);
   }
 
   // String _fieldValidator(String value) {

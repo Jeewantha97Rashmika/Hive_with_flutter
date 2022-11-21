@@ -5,6 +5,7 @@ import 'package:localdb_flutter/model/address.dart';
 import 'package:localdb_flutter/model/people.dart';
 import 'package:localdb_flutter/model/person.dart';
 import 'package:localdb_flutter/model/profile.dart';
+import 'package:localdb_flutter/screens/infoScreen.dart';
 
 class AddProfileForm extends StatefulWidget {
   const AddProfileForm({
@@ -16,8 +17,8 @@ class AddProfileForm extends StatefulWidget {
 }
 
 class _AddProfileFormState extends State<AddProfileForm> {
-  late final Box<dynamic> box;
-  final  Address address = box('address').values;
+  late final Box box;
+
   final _emailController = TextEditingController();
   final _firstNameController = TextEditingController();
   final _headingController = TextEditingController();
@@ -26,7 +27,6 @@ class _AddProfileFormState extends State<AddProfileForm> {
   final _photographController = TextEditingController();
   final _subtitleController = TextEditingController();
   final _websiteController = TextEditingController();
-  final _personFormKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -94,7 +94,11 @@ class _AddProfileFormState extends State<AddProfileForm> {
             child: ElevatedButton(
               onPressed: () {
                 _addInfo();
-                Navigator.of(context).pop();
+                 Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => InfoScreen()),
+                    );
               },
               child: Text('Next'),
             ),
@@ -106,7 +110,7 @@ class _AddProfileFormState extends State<AddProfileForm> {
 
   _addInfo() async {
     Profile newProfile = Profile(
-        address:address ,
+        address: Address(city: '', country: '', line1: '', line2: '', pincode: ''),
         email: _emailController.text,
         firstName: _firstNameController.text,
         heading: _headingController.text,

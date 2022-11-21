@@ -23,8 +23,14 @@ class _InfoScreenState extends State<InfoScreen> {
   void initState() {
     super.initState();
     // Get reference to an already opened box
-    // contactBox = Hive.box('address');
+ 
     contactBox = Hive.box('profile');
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -36,7 +42,7 @@ class _InfoScreenState extends State<InfoScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => AddProfileScreen(),
+            builder: (context) => AddScreen(),
           ),
         ),
         child: Icon(Icons.add),
@@ -45,7 +51,7 @@ class _InfoScreenState extends State<InfoScreen> {
         valueListenable: contactBox.listenable(),
         builder: (context, Box box, widget) {
           if (box.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('Empty'),
             );
           } else {
@@ -64,11 +70,11 @@ class _InfoScreenState extends State<InfoScreen> {
                     ),
                   ),
                   child: ListTile(
-                    title: Text(personData.email),
+                    title: Text(personData.city),
                     subtitle: Text(personData.firstName),
                     trailing: IconButton(
                       onPressed: () => _deleteInfo(index),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.delete,
                         color: Colors.red,
                       ),

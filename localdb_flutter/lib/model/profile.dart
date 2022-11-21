@@ -1,27 +1,46 @@
+import 'dart:convert';
+
 import 'package:hive_flutter/adapters.dart';
 import 'package:localdb_flutter/model/address.dart';
 part 'profile.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 0    )
 class Profile extends HiveObject {
   @HiveField(0)
-  final String address;
+  Address address;
   @HiveField(1)
-  final String email;
+  String email;
   @HiveField(2)
-  final String firstName;
+  String firstName;
   @HiveField(3)
-  final String heading;
+  String heading;
   @HiveField(4)
-  final String lastName;
+  String lastName;
   @HiveField(5)
-  final String phone;
+  String phone;
   @HiveField(6)
-  final String photograph;
+  String photograph;
   @HiveField(7)
-  final String subtitle;
+  String subtitle;
   @HiveField(8)
-  final String website;
+  String website;
+
+  @override
+  String toString() {
+    return jsonEncode({
+      'address': this.address,
+      'email': this.email,
+      'firstName': this.firstName,
+      'heading': this.heading,
+      'lastName': this.lastName,
+      'phone': this.phone,
+      'photograph': this.photograph,
+      'subtitle': this.subtitle,
+      'website': this.website,
+
+      //'listexam': this.listexam
+    });
+  }
 
   Profile(
       {required this.address,
