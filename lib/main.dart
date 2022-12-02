@@ -17,9 +17,11 @@ Future<void> main() async {
   Hive.init(directory.path);
 
   Hive.registerAdapter<Profile>(ProfileAdapter());
+  Hive.registerAdapter<Address>(AddressAdapter());
 
   // Opening the box
 
+  await Hive.openBox('profile');
   await Hive.openBox('address');
   runApp(const MyApp());
 }
