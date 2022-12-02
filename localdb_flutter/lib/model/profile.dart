@@ -7,43 +7,41 @@ part 'profile.g.dart';
 @HiveType(typeId: 0    )
 class Profile extends HiveObject {
   @HiveField(0)
-  Address address;
-  @HiveField(1)
   String email;
-  @HiveField(2)
+  @HiveField(1)
   String firstName;
-  @HiveField(3)
+  @HiveField(2)
   String heading;
-  @HiveField(4)
+  @HiveField(3)
   String lastName;
-  @HiveField(5)
+  @HiveField(4)
   String phone;
-  @HiveField(6)
+  @HiveField(5)
   String photograph;
-  @HiveField(7)
+  @HiveField(6)
   String subtitle;
-  @HiveField(8)
+  @HiveField(7)
   String website;
 
-  @override
-  String toString() {
-    return jsonEncode({
-      'address': this.address,
-      'email': this.email,
-      'firstName': this.firstName,
-      'heading': this.heading,
-      'lastName': this.lastName,
-      'phone': this.phone,
-      'photograph': this.photograph,
-      'subtitle': this.subtitle,
-      'website': this.website,
+  // @override
+  // String toString() {
+  //   return jsonEncode({
+     
+  //     'email': this.email,
+  //     'firstName': this.firstName,
+  //     'heading': this.heading,
+  //     'lastName': this.lastName,
+  //     'phone': this.phone,
+  //     'photograph': this.photograph,
+  //     'subtitle': this.subtitle,
+  //     'website': this.website,
 
-      //'listexam': this.listexam
-    });
-  }
+  //     //'listexam': this.listexam
+  //   });
+  // }
 
   Profile(
-      {required this.address,
+      {
       required this.email,
       required this.firstName,
       required this.heading,

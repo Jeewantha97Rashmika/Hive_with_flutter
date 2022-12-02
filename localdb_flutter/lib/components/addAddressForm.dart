@@ -28,7 +28,7 @@ class _addAddressFormState extends State<addAddressForm> {
   void initState() {
     super.initState();
     // Get reference to an already opened box
-    box = Hive.box('profile');
+    box = Hive.box('address');
   }
 
   @override
@@ -91,23 +91,14 @@ class _addAddressFormState extends State<addAddressForm> {
   }
 
   _addInfo() async {
-    Profile newProfile = Profile(
-        address: Address(
-            city: _cityController.text,
-            country: _countryController.text,
-            line1: _line1Controller.text,
-            line2: _line2Controller.text,
-            pincode: _pincodeController.text),
-        email: '',
-        firstName: '',
-        heading: '',
-        lastName: '',
-        phone: '',
-        photograph: '',
-        subtitle: '',
-        website: '');
+    Address newAddress = Address(
+        city: _cityController.text,
+        country: _countryController.text,
+        line1: _line1Controller.text,
+        line2: _line2Controller.text,
+        pincode: _pincodeController.text);
 
-    box.add(newProfile);
+    box.add(newAddress);
   }
 
   // String _fieldValidator(String value) {

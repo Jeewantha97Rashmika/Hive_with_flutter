@@ -37,7 +37,7 @@ class _AddProfileFormState extends State<AddProfileForm> {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(' email'),
@@ -94,11 +94,10 @@ class _AddProfileFormState extends State<AddProfileForm> {
             child: ElevatedButton(
               onPressed: () {
                 _addInfo();
-                 Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => InfoScreen()),
-                    );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InfoScreen()),
+                );
               },
               child: Text('Next'),
             ),
@@ -110,7 +109,6 @@ class _AddProfileFormState extends State<AddProfileForm> {
 
   _addInfo() async {
     Profile newProfile = Profile(
-        address: Address(city: '', country: '', line1: '', line2: '', pincode: ''),
         email: _emailController.text,
         firstName: _firstNameController.text,
         heading: _headingController.text,

@@ -8,7 +8,7 @@ part of 'profile.dart';
 
 class ProfileAdapter extends TypeAdapter<Profile> {
   @override
-  final int typeId = 1;
+  final int typeId = 0;
 
   @override
   Profile read(BinaryReader reader) {
@@ -17,39 +17,36 @@ class ProfileAdapter extends TypeAdapter<Profile> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Profile(
-      address: fields[0] as Address,
-      email: fields[1] as String,
-      firstName: fields[2] as String,
-      heading: fields[3] as String,
-      lastName: fields[4] as String,
-      phone: fields[5] as String,
-      photograph: fields[6] as String,
-      subtitle: fields[7] as String,
-      website: fields[8] as String,
+      email: fields[0] as String,
+      firstName: fields[1] as String,
+      heading: fields[2] as String,
+      lastName: fields[3] as String,
+      phone: fields[4] as String,
+      photograph: fields[5] as String,
+      subtitle: fields[6] as String,
+      website: fields[7] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Profile obj) {
     writer
-      ..writeByte(9)
-      ..writeByte(0)
-      ..write(obj.address)
-      ..writeByte(1)
-      ..write(obj.email)
-      ..writeByte(2)
-      ..write(obj.firstName)
-      ..writeByte(3)
-      ..write(obj.heading)
-      ..writeByte(4)
-      ..write(obj.lastName)
-      ..writeByte(5)
-      ..write(obj.phone)
-      ..writeByte(6)
-      ..write(obj.photograph)
-      ..writeByte(7)
-      ..write(obj.subtitle)
       ..writeByte(8)
+      ..writeByte(0)
+      ..write(obj.email)
+      ..writeByte(1)
+      ..write(obj.firstName)
+      ..writeByte(2)
+      ..write(obj.heading)
+      ..writeByte(3)
+      ..write(obj.lastName)
+      ..writeByte(4)
+      ..write(obj.phone)
+      ..writeByte(5)
+      ..write(obj.photograph)
+      ..writeByte(6)
+      ..write(obj.subtitle)
+      ..writeByte(7)
       ..write(obj.website);
   }
 

@@ -24,7 +24,7 @@ class _InfoScreenState extends State<InfoScreen> {
     super.initState();
     // Get reference to an already opened box
  
-    contactBox = Hive.box('profile');
+    contactBox = Hive.box('address');
   }
 
   @override
@@ -59,7 +59,7 @@ class _InfoScreenState extends State<InfoScreen> {
               itemCount: box.length,
               itemBuilder: (context, index) {
                 var currentBox = box;
-                var personData = currentBox.getAt(index)!;
+                var personData = currentBox.getAt(index);
                 return InkWell(
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
@@ -70,8 +70,8 @@ class _InfoScreenState extends State<InfoScreen> {
                     ),
                   ),
                   child: ListTile(
-                    title: Text(personData.city),
-                    subtitle: Text(personData.firstName),
+                    title: Text(personData.firstName),
+                    subtitle: Text(personData.city),
                     trailing: IconButton(
                       onPressed: () => _deleteInfo(index),
                       icon: const Icon(
